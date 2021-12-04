@@ -16,6 +16,7 @@ function createCheckboxItem (itemObject) {
 
         if (itemObject[i].completed) {
             input.setAttribute("id","flexCheckChecked");
+            input.setAttribute("checked", "");
             label.setAttribute("for","flexCheckChecked");
             completeList.appendChild(checkboxDiv);
             checkboxDiv.appendChild(input); 
