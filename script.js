@@ -2,34 +2,35 @@
 const incompleteList = document.querySelector("#incomplete-items");
 const completeList = document.querySelector("#complete-items");
 
-for (let i = 0; i < todoItems.length; i++) {
-    if (todoItems[i].completed)
-        createCheckboxItem(todoItems[i].title, completeList);
-    else
-        createCheckboxItem(todoItems[i].title, incompleteList);
-}
+createCheckboxItem(todoItems);
 
-function createCheckboxItem (str, parent) {
-    const checkboxDiv = document.createElement("div");
-    checkboxDiv.setAttribute("class", "form-check");
-    parent.appendChild(checkboxDiv);
-    const input = document.createElement("input");
-    input.setAttribute("class","form-check-input");
-    input.setAttribute("type","checkbox");
-    input.setAttribute("value","");
-    input.setAttribute("id","flexCheckDefault");
-    checkboxDiv.appendChild(input);
-    const label = document.createElement("label");
-    label.setAttribute("class","form-check-label");
-    label.setAttribute("for","flexCheckDefault");
-    label.innerHTML = str;
-    checkboxDiv.appendChild(label);
-    return label;
-}
+function createCheckboxItem (itemObject) {
+    for (let i = 0; i < itemObject.length; i++) {
+        const checkboxDiv = document.createElement("div");
+        checkboxDiv.setAttribute("class", "form-check");
+        const input = document.createElement("input");
+        input.setAttribute("class","form-check-input");
+        input.setAttribute("type","checkbox");
+        input.setAttribute("value","");
+        const label = document.createElement("label");
 
-// function addTodoItem (textContent, liClass, parent) {
-//     const newListItem = document.createElement("li");
-//     newListItem.setAttribute("class", liClass);
-//     newListItem.innerHTML = textContent;
-//     parent.appendChild(newListItem);
-// }
+        if (itemObject[i].completed) {
+            input.setAttribute("id","flexCheckChecked");
+            label.setAttribute("for","flexCheckChecked");
+            completeList.appendChild(checkboxDiv);
+            checkboxDiv.appendChild(input); 
+            label.setAttribute("class","form-check-label");
+            label.innerHTML = itemObject[i].title;  
+            checkboxDiv.appendChild(label); 
+        }
+        else {
+            label.setAttribute("for","flexCheckDefault");
+            input.setAttribute("id","flexCheckDefault");
+            incompleteList.appendChild(checkboxDiv);
+            checkboxDiv.appendChild(input);
+            label.setAttribute("class","form-check-label");
+            label.innerHTML = itemObject[i].title; 
+            checkboxDiv.appendChild(label); 
+        }
+    }
+}
