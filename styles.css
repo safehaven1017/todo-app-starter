@@ -11,3 +11,8 @@
     padding-top: .5vw;
     padding-bottom: .5vw;
 }
+
+.remove-button {
+    display: flex;
+    font-size: .6vw;
+}
